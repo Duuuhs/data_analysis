@@ -150,7 +150,7 @@ or b.UDC_CURRENT_URL like 'http://buy.ccb.com/secondchannel/mTouchErJi.jhtml?pag
 or b.UDC_CURRENT_URL like 'http://sale.mall.ccb.com/sale/%')				--B2B
 and a.UDC_CHANNEL_ID='04'
 group by a.OSVT_CHANNEL_ID,b.UDC_CURRENT_URL
-) as visitor2 --游客数
+) as visitor2 --游客数 
 on visitor1.OSVT_CHANNEL_ID=visitor2.OSVT_CHANNEL_ID
 and visitor1.UDC_CURRENT_URL=visitor2.UDC_CURRENT_URL;"
 
