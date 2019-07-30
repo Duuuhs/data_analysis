@@ -13,7 +13,7 @@
 ######################################################################################################
 #善融商务企业商城运营可视化分析业务--站内搜索
 ######################################################################################################
-EBDA_DIR=/home/ap/dip/appjob/shelljob/dzyh
+EBDA_DIR=/home/ap/dip/appjob/shelljob/****
 #EBDA_DIR="/home/hadoop/workspace_EBDA"
 EBDA_jobSh=${EBDA_DIR}/jobSh
 EBDA_BIN=${EBDA_jobSh}/platform
@@ -53,9 +53,9 @@ EBDA_DAY=${UDC_BIZ_DATE:6:2}
 
 
 ###InputJob Variables--3.0 DataClear SqlArray
-array_dataclear[0]="truncate table dzyh_app.tbm_ecp_internal_serach_pv_01;"
-array_dataclear[1]="truncate table dzyh_app.tbm_ecp_internal_serach_users_01;"
-array_dataclear[2]="delete from dzyh_app.tbl_ecp_web_search_detail where udc_biz_date like '${EBDA_YEAR}-${EBDA_MON}-${EBDA_DAY}%' ;"
+array_dataclear[0]="truncate table tbm_ecp_internal_serach_pv_01;"
+array_dataclear[1]="truncate table tbm_ecp_internal_serach_users_01;"
+array_dataclear[2]="delete from tbl_ecp_web_search_detail where udc_biz_date like '${EBDA_YEAR}-${EBDA_MON}-${EBDA_DAY}%' ;"
 
 
 
@@ -77,7 +77,7 @@ array_update=()
 
 ###InputJob Variables--3.4 insert Sql Array
 #1、 站内搜索次数,站内搜索访问次数
-array_insert[0]="insert into dzyh_app.tbm_ecp_internal_serach_pv_01 
+array_insert[0]="insert into tbm_ecp_internal_serach_pv_01 
 (udc_biz_date,
 osvt_channel_id,
 udc_internal_search_keyword,
@@ -91,7 +91,7 @@ udc_internal_search_keyword,
 count(udc_session_id),				--站内搜索次数
 count(distinct(udc_session_id))		--站内搜索访问次数
 from 
-dzyh_app.TBL_CUST_SEARCH_KEYWORD
+TBL_CUST_SEARCH_KEYWORD
 where
 udc_biz_date='${UDC_BIZ_DATE}'
 and udc_channel_id='04'
@@ -100,7 +100,7 @@ and udc_internal_search_keyword is not null
 group by osvt_channel_id,udc_internal_search_keyword;"							
 
 #2、 站内搜索用户数
-array_insert[1]="insert into dzyh_app.tbm_ecp_internal_serach_users_01 
+array_insert[1]="insert into tbm_ecp_internal_serach_users_01 
 (udc_biz_date,
 osvt_channel_id,
 udc_internal_search_keyword,
@@ -111,7 +111,7 @@ a.osvt_channel_id,
 a.udc_internal_search_keyword,
 count(distinct(b.udc_customer_id))		--站内搜索用户数
 from
-dzyh_app.TBL_CUST_SEARCH_KEYWORD a, dzyh_app.TBL_VISITOR_IDENTIFICATION b
+TBL_CUST_SEARCH_KEYWORD a, TBL_VISITOR_IDENTIFICATION b
 where a.UDC_BIZ_DATE=b.UDC_BIZ_DATE
 and a.UDC_CHANNEL_ID=b.UDC_CHANNEL_ID
 and a.UDC_SESSION_ID=b.UDC_SESSION_ID
@@ -124,7 +124,7 @@ and b.udc_customer_id is not null
 group by a.osvt_channel_id,a.udc_internal_search_keyword;" 
 
 #3、 数据插入到最终表
-array_insert[2]="insert into dzyh_app.tbl_ecp_web_search_detail
+array_insert[2]="insert into tbl_ecp_web_search_detail
 (udc_biz_date,			
  channel_flag,  		
  search_name,
@@ -140,8 +140,8 @@ array_insert[2]="insert into dzyh_app.tbl_ecp_web_search_detail
  coalesce(to_char(a.search_insta_visit_times,'FM999,999,999,999,999'),'0'),		--站内搜索访问次数
  coalesce(to_char(b.search_insta_users,'FM999,999,999,999,999'),'0')			--站内搜索用户数
  from 
- dzyh_app.tbm_ecp_internal_serach_pv_01 a 
- left join dzyh_app.tbm_ecp_internal_serach_users_01 b on a.udc_biz_date=b.udc_biz_date 
+ tbm_ecp_internal_serach_pv_01 a 
+ left join tbm_ecp_internal_serach_users_01 b on a.udc_biz_date=b.udc_biz_date 
  and a.osvt_channel_id=b.osvt_channel_id 
  and a.udc_internal_search_keyword=b.udc_internal_search_keyword;" 
 
