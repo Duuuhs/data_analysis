@@ -6,12 +6,12 @@
 ##参数编号：0                            1              2               3                                               4                       7
 ##参数：sh ebda_exec_Sh.sh flowID       jobID   jobName                                 jobPath                                                 EBDA_UDC_BIZ_DATE     jobStatus       args
 ##示例：
-##功能： 善融商城可视化指标数据加工                                                                             ccbcom_load_ccbcom              com.ccb.services.Ccbcom_import_ccbcom    20190701                5                       arg1            arg2            arg3
+##功能： 商城可视化指标数据加工                                                                             ccbcom_load_ccbcom              com.ccb.services.Ccbcom_import_ccbcom    20190701                5                       arg1            arg2            arg3
 ##################################################################
 ##【EBDA】作业参数设置(EDIT)
 ##################################################################
 ######################################################################################################
-#善融商务企业商城运营可视化分析业务--站内搜索
+#商务企业商城运营可视化分析业务--站内搜索
 ######################################################################################################
 EBDA_DIR=/home/ap/dip/appjob/shelljob/****
 #EBDA_DIR="/home/hadoop/workspace_EBDA"
