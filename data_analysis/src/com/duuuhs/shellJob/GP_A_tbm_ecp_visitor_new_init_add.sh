@@ -13,7 +13,7 @@
 ######################################################################################################
 #商务运营可视化分析业务--访客增量数据
 ######################################################################################################
-EBDA_DIR=/home/ap/dip/appjob/shelljob/dzyh
+EBDA_DIR=/home/ap/dip/appjob/shelljob/****
 #EBDA_DIR="/home/hadoop/workspace_EBDA"
 EBDA_jobSh=${EBDA_DIR}/jobSh
 EBDA_BIN=${EBDA_jobSh}/platform
@@ -92,8 +92,8 @@ from
   where udc_biz_date='${UDC_BIZ_DATE}'
  ) a
 where
-a.udc_visitor_sequence not in 
-(select udc_visitor_sequence from tbl_visitor_first_identification);"
+exists
+(select udc_visitor_sequence from tbl_visitor_first_identification where udc_visitor_sequence  = a.udc_visitor_sequence);"
 
 
 #########################################
