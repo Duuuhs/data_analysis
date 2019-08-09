@@ -98,9 +98,9 @@ from
 TBL_WEB_PAGE_VIEW 
 where
 udc_biz_date='${UDC_BIZ_DATE}'
-and (UDC_CURRENT_URL like 'http://buy.ccb.com/secondchannel/mppc%'						--B2C,PC
-or UDC_CURRENT_URL like 'http://buy.ccb.com/secondchannel/mTouchErJi.jhtml?pageId=%'	--B2C,APP/TP
-or UDC_CURRENT_URL like 'http://sale.mall.ccb.com/sale/%')								--B2B
+and (UDC_CURRENT_URL like 'http://****/secondchannel/mppc%'						--B2C,PC
+or UDC_CURRENT_URL like 'http://****/secondchannel/mTouchErJi.jhtml?pageId=%'	--B2C,APP/TP
+or UDC_CURRENT_URL like 'http://****/sale/%')								--B2B
 and UDC_CHANNEL_ID='04'
 group by OSVT_CHANNEL_ID,UDC_CURRENT_URL;"							
 
@@ -127,9 +127,9 @@ and a.OSVT_CHANNEL_ID=b.OSVT_CHANNEL_ID
 and a.UDC_CHANNEL_ID=b.UDC_CHANNEL_ID
 and a.udc_biz_date='${UDC_BIZ_DATE}' 
 and a.udc_customer_id is not null and a.udc_customer_id !=''
-and (b.UDC_CURRENT_URL like 'http://buy.ccb.com/secondchannel/mppc%'		--B2C,PC
-or b.UDC_CURRENT_URL like 'http://buy.ccb.com/secondchannel/mTouchErJi.jhtml?pageId=%'	--B2C,APP/TP
-or b.UDC_CURRENT_URL like 'http://sale.mall.ccb.com/sale/%')				--B2B
+and (b.UDC_CURRENT_URL like 'http://****/secondchannel/mppc%'		--B2C,PC
+or b.UDC_CURRENT_URL like 'http://****/secondchannel/mTouchErJi.jhtml?pageId=%'	--B2C,APP/TP
+or b.UDC_CURRENT_URL like 'http://****/sale/%')				--B2B
 and b.UDC_CHANNEL_ID='04'
 group by a.OSVT_CHANNEL_ID,b.UDC_CURRENT_URL
 ) as visitor1 left join  --客户数
@@ -145,9 +145,9 @@ and a.OSVT_CHANNEL_ID=b.OSVT_CHANNEL_ID
 and a.UDC_CHANNEL_ID=b.UDC_CHANNEL_ID
 and a.udc_biz_date='${UDC_BIZ_DATE}' 
 and (a.udc_customer_id is null or a.udc_customer_id='')
-and (b.UDC_CURRENT_URL like 'http://buy.ccb.com/secondchannel/mppc%'		--B2C,PC
-or b.UDC_CURRENT_URL like 'http://buy.ccb.com/secondchannel/mTouchErJi.jhtml?pageId=%'	--B2C,APP/TP
-or b.UDC_CURRENT_URL like 'http://sale.mall.ccb.com/sale/%')				--B2B
+and (b.UDC_CURRENT_URL like 'http://****/secondchannel/mppc%'		--B2C,PC
+or b.UDC_CURRENT_URL like 'http://****/secondchannel/mTouchErJi.jhtml?pageId=%'	--B2C,APP/TP
+or b.UDC_CURRENT_URL like 'http://****/sale/%')				--B2B
 and a.UDC_CHANNEL_ID='04'
 group by a.OSVT_CHANNEL_ID,b.UDC_CURRENT_URL
 ) as visitor2 --游客数 
@@ -177,9 +177,9 @@ where UDC_PAGE_VISIT_TIME ~ '^[0-9]{17}$' --过滤不合格式的数据
 and udc_biz_date = '${UDC_BIZ_DATE}'
 and UDC_CHANNEL_ID='04'
 ) a 
-where  (a.UDC_CURRENT_URL like 'http://buy.ccb.com/secondchannel/mppc%'		--B2C,PC
-or a.UDC_CURRENT_URL like 'http://buy.ccb.com/secondchannel/mTouchErJi.jhtml?pageId=%'	--B2C,APP/TP
-or a.UDC_CURRENT_URL like 'http://sale.mall.ccb.com/sale/%')				--B2B
+where  (a.UDC_CURRENT_URL like 'http://****/secondchannel/mppc%'		--B2C,PC
+or a.UDC_CURRENT_URL like 'http://****/secondchannel/mTouchErJi.jhtml?pageId=%'	--B2C,APP/TP
+or a.UDC_CURRENT_URL like 'http://****/sale/%')				--B2B
 group by a.OSVT_CHANNEL_ID,a.udc_current_url;"
 
 
@@ -224,9 +224,9 @@ left join TBL_WEB_PAGE_VIEW b
 on a.UDC_SESSION_ID=b.UDC_SESSION_ID 
 where 
 b.udc_biz_date='${UDC_BIZ_DATE}'
-and (b.UDC_CURRENT_URL like 'http://buy.ccb.com/secondchannel/mppc%'		--B2C,PC
-or b.UDC_CURRENT_URL like 'http://buy.ccb.com/secondchannel/mTouchErJi.jhtml?pageId=%'	--B2C,APP/TP
-or b.UDC_CURRENT_URL like 'http://sale.mall.ccb.com/sale/%')				--B2B
+and (b.UDC_CURRENT_URL like 'http://****/secondchannel/mppc%'		--B2C,PC
+or b.UDC_CURRENT_URL like 'http://****/secondchannel/mTouchErJi.jhtml?pageId=%'	--B2C,APP/TP
+or b.UDC_CURRENT_URL like 'http://****/sale/%')				--B2B
 group by b.OSVT_CHANNEL_ID,b.UDC_CURRENT_URL;"
 
 
@@ -250,7 +250,7 @@ group by b.OSVT_CHANNEL_ID,b.UDC_CURRENT_URL;"
 #TBL_WEB_PAGE_VIEW 
 #where 
 #udc_biz_date='${UDC_BIZ_DATE}'
-#and UDC_CURRENT_URL like 'http://buy.ccb.com/secondchannel/mppc_%'   --统计跳出的情况
+#and UDC_CURRENT_URL like 'http://****/secondchannel/mppc_%'   --统计跳出的情况
 #group by OSVT_CHANNEL_ID,UDC_SESSION_ID,UDC_CURRENT_URL ) a 
 #where a.num=1 group by a.OSVT_CHANNEL_ID,a.activity_id;"
 
@@ -280,7 +280,7 @@ from
 TBL_WEB_PAGE_VIEW a 
 where 
 a.udc_biz_date='${UDC_BIZ_DATE}' 
-and (a.UDC_SOURCE_URL like '暂无url' )  --http://buy.ccb.com/%
+and (a.UDC_SOURCE_URL like '暂无url' )  --http://****/%
 group by a.OSVT_CHANNEL_ID,a.UDC_SOURCE_URL) t;"
 
 
@@ -324,19 +324,19 @@ array_insert[7]="insert into tbl_ecp_special_activity
  coalesce((
 	case a.channel_id
 	when '05'		--B2B,PC
-	then  split_part(a.activity_url,'http://sale.mall.ccb.com/sale/',2)
+	then  split_part(a.activity_url,'http://****/sale/',2)
 	when '09'		--B2B,TP
-	then  split_part(a.activity_url,'http://sale.mall.ccb.com/sale/',2)
+	then  split_part(a.activity_url,'http://****/sale/',2)
 	when '07'		--B2C,PC
 	then 
-		case split_part(split_part(a.activity_url,'http://buy.ccb.com/secondchannel/mppc_',2),'.jhtml',1) 
+		case split_part(split_part(a.activity_url,'http://****/secondchannel/mppc_',2),'.jhtml',1) 
 		when '01021' then '学生惠'
 		when '00620' then '电子券专区'
 		when 'PB001' then '私人银行'
 		else '快速专题活动'
 		end
 	else 			--B2C,APP/TP
-		case split_part(a.activity_url,'http://buy.ccb.com/secondchannel/mTouchErJi.jhtml?pageId=',2) 
+		case split_part(a.activity_url,'http://****/secondchannel/mTouchErJi.jhtml?pageId=',2) 
 		when '00092' then '分期优选'
 		when '00367' then '学生惠'
 		when '00124' then '地方特色'
